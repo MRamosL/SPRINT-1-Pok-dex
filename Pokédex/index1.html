@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="img/icono.png">
+        <title>Document</title>
+    </head>
+    <body>
+        <form method="post">
+            <h1 style="text-align: center;">Mi Pokedex</h1>
+            <center>
+                <table border="1" style="width: 60%;">
+                    <tr>
+                        <td style="text-align: center;">
+                            <label for="" style="text-align: center;">Nombre: </label>
+                            <input type="text" style="text-align: center;" class= " Esp-Buscar">
+                            <select id="pokemon-select" name="pokemon">
+                               
+                            </select>
+                            <input type="button" class="btn-Buscar" value="Buscar" onclick="showPokemonImage()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png">
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </form>
+        <script>
+            //funcion de nombre
+            for(let i = 1; i <= 20; i++) {
+                fetch('https://pokeapi.co/api/v2/pokemon/' + i)
+                    .then(response => response.json())
+                    .then(data => {
+                        let select = document.getElementById("pokemon-select");
+                        let option = document.createElement("option");
+                        option.value = i;
+                        option.text = data.name;
+                        select.add(option);
+                    });
+            }
+
+            function showPokemonImage() {
+                var select = document.getElementById("pokemon-select");
+                var selectedValue = select.value;
+                var imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + selectedValue + ".png";
+
+                document.getElementById("pokemon-image").src = imageUrl;
+            }
+        </script>
+        <style>
+            .btn-Buscar {
+                padding: 13px 35px;
+                border-radius: 25px;
+                background-color: #ca7070;
+                font-size: 15px;
+                color: #110c0c;
+                text-transform: capitalize;
+                box-shadow: px rgba(104, 103, 103, 0.753);
+                text-decoration: none;
+                font-weight: bold;
+                border : none
+            }
+        </style>
+    </body>
+</html>
