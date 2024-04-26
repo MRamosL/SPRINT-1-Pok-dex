@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/icono.png">
-    <title>Document</title>
+    <link rel="icon" href="resources/icono.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Jersey+10&family=Poppins:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"><title>POKEDEX</title>
 </head>
-<body>
+<body onclick="PlayAudio()">
 <form method="post">
     <h1 style="text-align: center;">Mi Pokedex</h1>
     <center>
         <table border="1" style="width: 80%;">
             <tr>
-                <td rowspan="3" style="text-align: center;">
+                <td rowspan="3" style="text-align: center;" class="tdd">
                     <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png">
                 </td>
-                <td style="text-align: center;">
+                <td class="buscador" style="text-align: center;">
                     <label for="" style="text-align: center;">Nombre: </label>
                     <input type="text" style="text-align: center;" class="Esp-Buscar">
                     <select id="pokemon-select" name="pokemon">
                     </select>
-                    <input type="button" class="btn-Buscar" value="Buscar" onclick="showPokemonData()">
+                    <input type="button" class="btn-Buscar" value="Buscar" onclick="showPokemonDataAndPlayAudio()">
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="desc">
                     <div id="pokemon-description" style="text-align: left; padding-left: 10px;"></div>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="estadis">
                     <div id="pokemon-stats" style="text-align: left; padding-left: 10px;"></div>
                     <div id="pokemon-abilities" style="text-align: left; padding-left: 10px;"></div>
                 </td>
@@ -52,11 +53,12 @@
     }
 
     // Función para mostrar la información del Pokémon
-    function showPokemonData() {
+    function showPokemonDataAndPlayAudio() {
         var select = document.getElementById("pokemon-select");
         var selectedValue = select.value;
         var imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + selectedValue + ".png";
         document.getElementById("pokemon-image").src = imageUrl;
+        document.getElementById("musiquita2").play();
 
         // Obtener la descripción del Pokémon en español
         fetch('https://pokeapi.co/api/v2/pokemon-species/' + selectedValue)
@@ -104,8 +106,20 @@
         box-shadow: px rgba(104, 103, 103, 0.753);
         text-decoration: none;
         font-weight: bold;
-        border : none
+        border : none;
+        cursor: pointer;
     }
 </style>
+<audio id="musiquita" loop>
+    <source src="resources/audi.mp3" type="audio/mpeg">
+</audio>
+<script>
+    function PlayAudio(){
+        document.getElementById("musiquita").play();
+    }
+</script>
+<audio id="musiquita2">
+    <source src="resources/pokeaudio.mp3" type="audio/mpeg">
+</audio>
 </body>
 </html>

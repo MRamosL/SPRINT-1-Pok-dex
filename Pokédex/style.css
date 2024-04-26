@@ -1,0 +1,76 @@
+*{
+    font-family: "Silkscreen", sans-serif;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+body{
+    background: linear-gradient(to left, red, rgb(218, 38, 38));
+    padding-bottom: 100px;
+    background-repeat: no-repeat;
+}
+h1{
+    background-color:gold;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-bottom: 40px;
+}
+.tdd{
+    background: linear-gradient(to bottom, #6ab7f6, #fff, #fff, green);
+}
+.estadis{
+    background:linear-gradient(to right top, black, black,rgb(39, 38, 38));
+    border-radius: 10px;
+    border-color: black;
+    border-bottom-right-radius: 30px;
+    padding-bottom: 70px;
+}
+#pokemon-stats{
+    color: #fff;
+}
+#pokemon-abilities{
+    color: #fff;
+}
+.desc{
+    background-color:darkblue;
+    border-radius: 10px;
+    border-color: black;
+    padding-bottom: 20px;
+    padding-top: 30px;
+}
+#pokemon-description{
+    color: yellow;
+    box-sizing: border-box;
+}
+.buscador{
+    background-color: red;
+    border-radius: 10px;
+    border-color: black;
+    border-top-right-radius: 30px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+table{
+    background-color: rgb(36, 35, 35);
+    padding: 40px;
+    border-radius: 50px;
+    border-style: ridge;
+}
+#pokemon-select{
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+}
+#pokemon-select:hover{
+    background-color: rgb(66, 64, 64);
+    transition: 300ms linear;
+}
+
+.btn-Buscar:hover{
+    background-color: rgb(177, 173, 173);
+    font-size: 14px;
+    transition: 300ms;
+    margin-top: 2px;
+}
+
+
