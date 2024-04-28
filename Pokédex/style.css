@@ -5,7 +5,7 @@
     text-decoration: none;
 }
 body{
-    background: linear-gradient(to left, red, rgb(218, 38, 38));
+    background: linear-gradient(to left, rgb(228, 170, 46), rgb(228, 175, 76));
     padding-bottom: 100px;
     background-repeat: no-repeat;
 }
@@ -32,7 +32,7 @@ h1{
     background: linear-gradient(to bottom, #6ab7f6, #fff, #fff, green);
 }
 .estadis{
-    background:linear-gradient(to right top, black, black,rgb(39, 38, 38));
+    background:linear-gradient(to right top, rgb(75, 72, 72), rgb(75, 72, 72),rgb(75, 72, 72));
     border-radius: 10px;
     border-color: black;
     border-bottom-right-radius: 30px;
@@ -45,7 +45,7 @@ h1{
     color: #fff;
 }
 .desc{
-    background-color:darkblue;
+    background-color:rgb(46, 190, 190);
     border-radius: 10px;
     border-color: black;
     padding-bottom: 20px;
@@ -56,7 +56,7 @@ h1{
     box-sizing: border-box;
 }
 .buscador{
-    background-color: red;
+    background-color: rgb(228, 191, 91);
     border-radius: 10px;
     border-color: black;
     border-top-right-radius: 30px;
