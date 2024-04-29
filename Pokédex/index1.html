@@ -8,35 +8,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Jersey+10&family=Poppins:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"><title>Pokédex</title>
 </head>
 <body onclick="PlayAudio()">
-<form method="post">
-    <h1 style="text-align: center;">Mi Pokedex</h1>
-    <center>
-        <table border="1" style="width: 80%;">
-            <tr>
-                <td rowspan="3" style="text-align: center;" class="tdd">
+    <form method="post">
+        <h1 style="text-align: center;">Mi Pokedex</h1>
+        <center>
+            <div class="container">
+                <div class="pokemon-image-container">
                     <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png">
-                </td>
-                <td class="buscador" style="text-align: center;">
-                    <label for="" style="text-align: center;">Nombre: </label>
-                    <select id="pokemon-select" name="pokemon">
-                    </select>
-                    <input type="button" class="btn-Buscar" value="Buscar" onclick="showPokemonDataAndPlayAudio()">
-                </td>
-            </tr>
-            <tr>
-                <td class="desc">
-                    <div id="pokemon-description" style="text-align: left; padding-left: 10px;"></div>
-                </td>
-            </tr>
-            <tr>
-                <td class="estadis">
-                    <div id="pokemon-stats" style="text-align: left; padding-left: 10px;"></div>
-                    <div id="pokemon-abilities" style="text-align: left; padding-left: 10px;"></div>
-                </td>
-            </tr>
-        </table>
-    </center>
-</form>
+                </div>
+                <div class="pokemon-info-container">
+                    <div class="buscador">
+                        <label for="">Nombre:</label>
+                        <input type="text" class="Esp-Buscar">
+                        <select id="pokemon-select" name="pokemon"></select>
+                        <input type="button" class="btn-Buscar" value="Buscar" onclick="showPokemonDataAndPlayAudio()">
+                    </div>
+                    <div class="desc">
+                        <div id="pokemon-description"></div>
+                    </div>
+                    <div class="estadis">
+                        <div id="pokemon-stats"></div>
+                        <div id="pokemon-abilities"></div>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </form>
 <script>
     // Función para cargar los nombres de los Pokémon en el select
     for(let i = 1; i <= 20; i++) {
@@ -108,6 +104,25 @@
         border : none;
         cursor: pointer;
     }
+    .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.pokemon-image-container {
+    text-align: center;
+}
+
+.pokemon-info-container {
+    margin-left: 20px; /* Espacio entre la imagen y la información */
+}
+
+.buscador, .desc, .estadis {
+    text-align: left;
+    margin-bottom: 20px; /* Espacio entre los bloques de información */
+}
 </style>
 <audio id="musiquita" loop>
     <source src="resources/fondoindex.mp3" type="audio/mpeg">

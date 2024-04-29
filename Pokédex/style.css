@@ -16,7 +16,7 @@ margin: 0;
 
 padding: 0;
 
-background: url(resources/fondo5.jpg);
+background: url(resources/fondo2.jpg);
 
 background-size: 2000px;
 
@@ -27,6 +27,8 @@ h1{
     margin-left: 400px;
     margin-right: 400px;
     margin-bottom: 40px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 .tdd{
     background: linear-gradient(to bottom, #6ab7f6, #fff, #fff, green);
