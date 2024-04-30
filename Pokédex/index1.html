@@ -6,33 +6,43 @@
     <link rel="icon" href="resources/icono.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Jersey+10&family=Poppins:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet"><title>Pokédex</title>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body onclick="PlayAudio()">
-    <form method="post">
-        <h1 style="text-align: center;">Mi Pokedex</h1>
-        <center>
-            <div class="container">
-                <div class="pokemon-image-container">
-                    <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/1.png">
-                </div>
-                <div class="pokemon-info-container">
-                    <div class="buscador">
-                        <label for="">Nombre:</label>
-                        <input type="text" class="Esp-Buscar">
-                        <select id="pokemon-select" name="pokemon"></select>
-                        <input type="button" class="btn-Buscar" value="Buscar" onclick="showPokemonDataAndPlayAudio()">
-                    </div>
-                    <div class="desc">
-                        <div id="pokemon-description"></div>
-                    </div>
-                    <div class="estadis">
-                        <div id="pokemon-stats"></div>
-                        <div id="pokemon-abilities"></div>
-                    </div>
-                </div>
-            </div>
-        </center>
-    </form>
+
+    <a href="catalogoPokemon.html" class="btn-RegresarCar">Regresar</a>
+<form method="post">
+    <div class="centrar-imagen">
+        <img src="https://static.wikia.nocookie.net/doblaje/images/4/4b/Pok%C3%A9dex_logo.png/revision/latest?cb=20231114185508&path-prefix=es">
+        <br>
+    </div>
+    <center>
+        <table border="1" style="width: 80%;">
+            <tr>
+                <td rowspan="3" style="text-align: center;" class="tdd">
+                    <img id="pokemon-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png">
+                </td>
+                <td class="buscador" style="text-align: center;">
+                    <label for="" style="text-align: center;">Nombre: </label>
+                    <select id="pokemon-select" name="pokemon">
+                    </select>
+                    <input type="button" class="btn-Buscar" value="Buscar" onclick="showPokemonDataAndPlayAudio()">
+                </td>
+            </tr>
+            <tr>
+                <td class="desc">
+                    <div id="pokemon-description" style="text-align: left; padding-left: 10px;"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="estadis">
+                    <div id="pokemon-stats" style="text-align: left; padding-left: 10px;"></div>
+                    <div id="pokemon-abilities" style="text-align: left; padding-left: 10px;"></div>
+                </td>
+            </tr>
+        </table>
+    </center>
+</form>
 <script>
     // Función para cargar los nombres de los Pokémon en el select
     for(let i = 1; i <= 20; i++) {
@@ -91,41 +101,57 @@
     }
 </script>
 <style>
+
+/* Aplica la fuente "Public Sans" a todo el contenido */
+body {
+        font-family: 'Public Sans', sans-serif; /* Fuente principal para todo el cuerpo */
+        margin: 0;
+        padding: 0;
+    }
+
     .btn-Buscar {
         padding: 13px 35px;
         border-radius: 25px;
-        background-color: #ca7070;
+        background-color: #0c7e7e;
         font-size: 15px;
-        color: #110c0c;
+        color: #e0d2d2;
         text-transform: capitalize;
-        box-shadow: px rgba(104, 103, 103, 0.753);
+        box-shadow: px  rgba(22, 15, 15, 0.753);
         text-decoration: none;
         font-weight: bold;
         border : none;
         cursor: pointer;
     }
-    .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-.pokemon-image-container {
-    text-align: center;
-}
+    /* botón regresar al catalogo de carta pokemon */
+    .btn-RegresarCar {
+            padding: 13px 35px;
+            border-radius: 25px;
+            background-color: #0c7e7e;
+            font-size: 15px;
+            color: #e0d2d2;
+            text-transform: capitalize;
+            box-shadow: px  rgba(22, 15, 15, 0.753);
+            text-decoration: none;
+            font-weight: bold;
+            border : none;
+            cursor: pointer;
 
-.pokemon-info-container {
-    margin-left: 20px; /* Espacio entre la imagen y la información */
-}
+            /* Ajuste del posicionamiento del botón */
+            position: absolute; /* Para posicionar dentro del contenedor */
+            top: 32px; /* Ajusta para colocarlo en la parte superior */
+            left: 200px; /* Ajusta para colocarlo a la izquierda */
+        }
 
-.buscador, .desc, .estadis {
-    text-align: left;
-    margin-bottom: 20px; /* Espacio entre los bloques de información */
-}
+            .centrar-imagen {
+            display: flex;
+            justify-content: center;
+            height: 20vh;
+        
+        }
 </style>
 <audio id="musiquita" loop>
-    <source src="resources/fondoindex.mp3" type="audio/mpeg">
+    <source src="resourcesg/fondoindex.mp3" type="audio/mpeg">
 </audio>
 <script>
     function PlayAudio(){
@@ -134,7 +160,8 @@
     document.getElementById("musiquita").volume = 0.3;
 </script>
 <audio id="musiquita2">
-    <source src="resources/pokeaudio.mp3" type="audio/mpeg">
+    <source src="resourcges/pokeaudio.mp3" type="audio/mpeg">
 </audio>
 </body>
 </html>
+

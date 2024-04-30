@@ -1,45 +1,55 @@
-*{
-    font-family: "Silkscreen", sans-serif;
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
+p, h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 1100;
 }
 body{
-    background: linear-gradient(to left, rgb(228, 170, 46), rgb(228, 175, 76));
+    background: linear-gradient(to left, red, rgb(218, 38, 38));
     padding-bottom: 100px;
     background-repeat: no-repeat;
 }
 body {
-    font-family: 'Poppins', sans-serif;
-
-margin: 0;
-
-padding: 0;
-
-background: url(resources/fondo2.jpg);
-
-background-size: 2000px;
-
-background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    background-image: url('img/fndox.jpg');
+    background-repeat: no-repeat; /* No repetir la imagen */
+    background-size: cover; /* La imagen cubre todo el fondo */
+   /* Centrar la imagen horizontal y verticalmente */
+    margin: 0;
+    padding: 0;
 }
+
 h1{
     background-color:gold;
     margin-left: 400px;
     margin-right: 400px;
     margin-bottom: 40px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
 }
 .tdd{
-    background: linear-gradient(to bottom, #6ab7f6, #fff, #fff, green);
+    background: url('https://i.pinimg.com/564x/ef/49/98/ef4998e969ddd6b5553656133be568bf.jpg');
+    background-blend-mode: multiply;
+    justify-content: center;
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    width: 60%; /* Ajusta el ancho del cuadro al 60% */
+    height: auto; /* Mantiene la relación de aspecto del cuadro */
 }
+
+
+
 .estadis{
-    background:linear-gradient(to right top, rgb(75, 72, 72), rgb(75, 72, 72),rgb(75, 72, 72));
-    border-radius: 10px;
-    border-color: black;
-    border-bottom-right-radius: 30px;
-    padding-bottom: 70px;
+    background:linear-gradient(to right top, black, black,rgb(39, 38, 38));
+    border-radius: 1px;
+    border-color: rgb(80, 77, 77);
+    border-bottom-right-radius: 1px;
+    padding-bottom: 30px; /* Ajusta el padding-bottom a 30px */
 }
+
+
+#pokemon-image {
+    width: 60%; /* Ajusta el ancho de la imagen al 50% */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
+
 #pokemon-stats{
     color: #fff;
 }
@@ -47,33 +57,35 @@ h1{
     color: #fff;
 }
 .desc{
-    background-color:rgb(46, 190, 190);
+    background-color:darkblue;
     border-radius: 10px;
     border-color: black;
     padding-bottom: 20px;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 #pokemon-description{
-    color: yellow;
+    color: rgb(219, 219, 205);
     box-sizing: border-box;
 }
 .buscador{
-    background-color: rgb(228, 191, 91);
-    border-radius: 10px;
+    background-color: #cbd1cb;
+    border-radius: 2px;
     border-color: black;
     border-top-right-radius: 30px;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 10px; /* Reducido a la mitad */
+    padding-top: 10px; /* Reducido a la mitad */
 }
+
 table{
-    background-color: lightblue;
-    padding: 40px;
-    border-radius: 50px;
+    background-color: rgb(9, 147, 189);
+    padding: 20px;
+    border-radius: 10px;
     border-style: ridge;
+    width: 60%; /* Ajusta el ancho de la tabla al 60% */
 }
-#pokemon-select{
-    background-color: black;
-    color: #fff;
+okemon-select{
+    background-color: rgb(219, 203, 203);
+    color: #0e0e0e;
     cursor: pointer;
 }
 #pokemon-select:hover{
