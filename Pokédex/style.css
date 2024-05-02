@@ -1,103 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
-p, h3 {
-    font-family: "Space Grotesk", sans-serif;
-    font-weight: 1100;
-}
-body{
-    background: linear-gradient(to left, red, rgb(218, 38, 38));
-    padding-bottom: 100px;
-    background-repeat: no-repeat;
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap");
+p,
+h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 1100;
 }
 body {
-    font-family: Arial, sans-serif;
-    background-image: url('img/fndox.jpg');
-    background-repeat: no-repeat; /* No repetir la imagen */
-    background-size: cover; /* La imagen cubre todo el fondo */
-   /* Centrar la imagen horizontal y verticalmente */
-    margin: 0;
-    padding: 0;
+  background: linear-gradient(to left, red, rgb(218, 38, 38));
+  padding-bottom: 100px;
+  background-repeat: no-repeat;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("img/fndox.jpg");
+  background-repeat: no-repeat; /* No repetir la imagen */
+  background-size: cover; /* La imagen cubre todo el fondo */
+  /* Centrar la imagen horizontal y verticalmente */
+  margin: 0;
+  padding: 0;
 }
 
-h1{
-    background-color:gold;
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-bottom: 40px;
+h1 {
+  background-color: gold;
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-bottom: 40px;
 }
-.tdd{
-    background: url('https://i.pinimg.com/564x/ef/49/98/ef4998e969ddd6b5553656133be568bf.jpg');
-    background-blend-mode: multiply;
-    justify-content: center;
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    width: 60%; /* Ajusta el ancho del cuadro al 60% */
-    height: auto; /* Mantiene la relación de aspecto del cuadro */
-}
-
-
-
-.estadis{
-    background:linear-gradient(to right top, black, black,rgb(39, 38, 38));
-    border-radius: 1px;
-    border-color: rgb(80, 77, 77);
-    border-bottom-right-radius: 1px;
-    padding-bottom: 30px; /* Ajusta el padding-bottom a 30px */
+.tdd {
+  background: url("https://i.pinimg.com/564x/ef/49/98/ef4998e969ddd6b5553656133be568bf.jpg");
+  background-blend-mode: multiply;
+  justify-content: center;
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  width: 60%; /* Ajusta el ancho del cuadro al 60% */
+  height: auto; /* Mantiene la relación de aspecto del cuadro */
 }
 
+.estadis {
+  background: linear-gradient(to right top, black, black, rgb(39, 38, 38));
+  border-radius: 1px;
+  border-color: rgb(80, 77, 77);
+  border-bottom-right-radius: 1px;
+  padding-bottom: 30px; /* Ajusta el padding-bottom a 30px */
+}
 
 #pokemon-image {
-    width: 60%; /* Ajusta el ancho de la imagen al 50% */
-    height: auto; /* Mantiene la relación de aspecto de la imagen */
+  width: 60%; /* Ajusta el ancho de la imagen al 50% */
+  height: auto; /* Mantiene la relación de aspecto de la imagen */
 }
 
-#pokemon-stats{
-    color: #fff;
+#pokemon-stats {
+  color: #fff;
 }
-#pokemon-abilities{
-    color: #fff;
+#pokemon-abilities {
+  color: #fff;
 }
-.desc{
-    background-color:darkblue;
-    border-radius: 10px;
-    border-color: black;
-    padding-bottom: 20px;
-    padding-top: 10px;
+.desc {
+  background-color: darkblue;
+  border-radius: 10px;
+  border-color: black;
+  padding-bottom: 20px;
+  padding-top: 10px;
 }
-#pokemon-description{
-    color: rgb(219, 219, 205);
-    box-sizing: border-box;
+#pokemon-description {
+  color: rgb(219, 219, 205);
+  box-sizing: border-box;
 }
-.buscador{
-    background-color: #cbd1cb;
-    border-radius: 2px;
-    border-color: black;
-    border-top-right-radius: 30px;
-    padding-bottom: 10px; /* Reducido a la mitad */
-    padding-top: 10px; /* Reducido a la mitad */
-}
-
-table{
-    background-color: rgb(9, 147, 189);
-    padding: 20px;
-    border-radius: 10px;
-    border-style: ridge;
-    width: 60%; /* Ajusta el ancho de la tabla al 60% */
-}
-okemon-select{
-    background-color: rgb(219, 203, 203);
-    color: #0e0e0e;
-    cursor: pointer;
-}
-#pokemon-select:hover{
-    background-color: rgb(66, 64, 64);
-    transition: 300ms linear;
+.buscador {
+  background-color: #cbd1cb;
+  border-radius: 2px;
+  border-color: black;
+  border-top-right-radius: 30px;
+  padding-bottom: 10px; /* Reducido a la mitad */
+  padding-top: 10px; /* Reducido a la mitad */
 }
 
-.btn-Buscar:hover{
-    background-color: rgb(177, 173, 173);
-    font-size: 14px;
-    transition: 300ms;
-    margin-top: 2px;
+table {
+  background-color: rgb(9, 147, 189);
+  padding: 20px;
+  border-radius: 10px;
+  border-style: ridge;
+  width: 60%; /* Ajusta el ancho de la tabla al 60% */
+}
+okemon-select {
+  background-color: rgb(219, 203, 203);
+  color: #0e0e0e;
+  cursor: pointer;
+}
+#pokemon-select:hover {
+  background-color: rgb(66, 64, 64);
+  transition: 300ms linear;
 }
 
-
+.btn-Buscar:hover {
+  background-color: rgb(177, 173, 173);
+  font-size: 14px;
+  transition: 300ms;
+  margin-top: 2px;
+}

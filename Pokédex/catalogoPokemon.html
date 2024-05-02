@@ -1,513 +1,662 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap" rel="stylesheet">
-    <link rel="icon" href="img/icono.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="img/icono.png" />
     <title>Pokédex</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <a href="index.html" class="btn-Regresar">Regresar</a>
-    <a href="index1.html" class="btn-buscar">Buscador</a>
+    <a href="index1.php" class="btn-buscar">Buscador</a>
+    <!-- AGREGADO RECIEN -->
+    <button id="btn-filtrar" class="btn-filtrar">Filtrar</button>
+    <select id="tipo-pokemon" class="tipo-pokemon">
+      <option value="todos">Todos</option>
+      <option value="normal">Normal</option>
+      <option value="fire">Fuego</option>
+      <option value="water">Agua</option>
+      <option value="electric">Eléctrico</option>
+      <option value="grass">Planta</option>
+      <option value="ice">Hielo</option>
+      <option value="fighting">Lucha</option>
+      <option value="poison">Veneno</option>
+      <option value="ground">Tierra</option>
+      <option value="flying">Volador</option>
+      <option value="psychic">Psíquico</option>
+      <option value="bug">Bicho</option>
+      <option value="rock">Roca</option>
+      <option value="ghost">Fantasma</option>
+      <option value="dragon">Dragón</option>
+      <option value="dark">Siniestro</option>
+      <option value="steel">Acero</option>
+      <option value="fairy">Hada</option>
+    </select>
+    <!-- FIN -->
+
     <div class="centrar-imagen">
-        <img src="img/International_Pokémon_logo.svg">
-        <br>
+      <img src="img/International_Pokémon_logo.svg" />
+      <br />
     </div>
-    <div class="borde">
+    <div class="borde"></div>
+
+    <!-- Modal con fondo transparente y color celeste claro -->
+    <div id="modal-info" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="pokemon-info"></div>
+        <!-- Contenido del modal -->
+      </div>
     </div>
 
-                    <!-- Modal con fondo transparente y color celeste claro -->
-            <div id="modal-info" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <div id="pokemon-info"></div> <!-- Contenido del modal -->
-                </div>
-            </div>
-        <!-- Botón para cargar más Pokémon -->
-        <div class="cargar-mas">
-            <button id="btn-cargar-mas">Cargar más</button>
-        </div>
-    
-    
-        <script>
- // Mapa de colores según el tipo de Pokémon
-const typeColors = {
-    normal: '#A8A878',
-    fire: '#F08030',
-    water: '#6890F0',
-    electric: '#F8D030',
-    grass: '#78C850',
-    ice: '#98D8D8',
-    fighting: '#C03028',
-    poison: '#A040A0',
-    ground: '#E0C068',
-    flying: '#A890F0',
-    psychic: '#F85888',
-    bug: '#A8B820',
-    rock: '#B8A038',
-    ghost: '#705898',
-    dragon: '#7038F8',
-    dark: '#705848',
-    steel: '#B8B8D0',
-    fairy: '#EE99AC',
-};
 
-// Función para crear una carta de Pokémon
-function createPokemonCard(pokemon) {
-    const firstTypeName = pokemon.types[0].type.name; // Obtener el tipo principal
-    const backgroundColor = typeColors[firstTypeName] || '#CCCCCC'; // Color según el tipo
-    const buttonColor = typeColors[firstTypeName] || '#CCCCCC'; // Color para el botón "Información"
+    <!-- Modal para mostrar información del Pokémon -->
+    <div id="modal-info" class="modal">
+      <!-- Asegúrate de tener una clase 'modal' en el CSS -->
+      <div class="modal-content">
+        <!-- Contenedor para el contenido del modal -->
+        <span class="close">&times;</span>
+        <!-- Icono para cerrar el modal -->
+        <div id="pokemon-info"></div>
+        <!-- Contenido dinámico del Pokémon -->
+      </div>
+    </div>
 
-    // Retornar el HTML para la carta de Pokémon
-    return `
+    <script>
+      // Mapa de colores según el tipo de Pokémon
+      const typeColors = {
+        normal: "#A8A878",
+        fire: "#F08030",
+        water: "#6890F0",
+        electric: "#F8D030",
+        grass: "#78C850",
+        ice: "#98D8D8",
+        fighting: "#C03028",
+        poison: "#A040A0",
+        ground: "#E0C068",
+        flying: "#A890F0",
+        psychic: "#F85888",
+        bug: "#A8B820",
+        rock: "#B8A038",
+        ghost: "#705898",
+        dragon: "#7038F8",
+        dark: "#705848",
+        steel: "#B8B8D0",
+        fairy: "#EE99AC",
+      };
+
+      // Función para crear una carta de Pokémon
+      function createPokemonCard(pokemon) {
+        const firstTypeName = pokemon.types[0]?.type.name || "normal"; // Obtener el tipo principal
+        const backgroundColor = typeColors[firstTypeName] || "#CCCCCC"; // Color según el tipo
+        const buttonColor = typeColors[firstTypeName] || "#CCCCCC"; // Color para el botón "Información"
+
+        // HTML para la carta de Pokémon, con validaciones
+        return `
         <div class="carta-pokemon type-${firstTypeName}" style="background-color: ${backgroundColor};">
-            <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
+            <img src="${
+              pokemon.sprites.other["official-artwork"].front_default || ""
+            }" alt="${pokemon.name}">
             <h3>${pokemon.name}</h3>
-            <div>${pokemon.types.map(type => type.type.name).join(' | ')}</div>
-            <div>N.º ${pokemon.id.toString().padStart(3, '0')}</div>
-            <button class="btn-info" style="background-color: ${buttonColor};" onclick="openModal('${pokemon.name}')">Información</button>
+            <div>${pokemon.types
+              .map((type) => type.type.name)
+              .join(" | ")}</div>
+            <div>N.º ${pokemon.id.toString().padStart(3, "0")}</div>
+            <button class="btn-info" style="background-color: ${buttonColor};" 
+                onclick="openModal('${pokemon.name}')">Información</button>
         </div>
     `;
-}
+      }
 
-// Variables para manejar la carga de Pokémon
-let currentOffset = 1; // Punto de inicio para el siguiente lote
-        const batchSize = 20; // Cantidad de Pokémon a cargar por lote
-        
-        async function getPokemonTypesInSpanish(pokemonTypes) {
-    const spanishTypeNames = await Promise.all(
-        pokemonTypes.map(async (typeInfo) => {
-            const response = await fetch(`https://pokeapi.co/api/v2/type/${typeInfo.type.name}`);
+      // Variables para manejar la carga de Pokémon
+      let currentOffset = 1; // Punto de inicio para el siguiente lote
+      const batchSize = 20; // Cantidad de Pokémon a cargar por lote
+
+      async function getPokemonTypesInSpanish(pokemonTypes) {
+        const spanishTypeNames = await Promise.all(
+          pokemonTypes.map(async (typeInfo) => {
+            const response = await fetch(
+              `https://pokeapi.co/api/v2/type/${typeInfo.type.name}`
+            );
             if (!response.ok) {
-                throw new Error(`Error obteniendo el tipo ${typeInfo.type.name}`);
+              throw new Error(`Error obteniendo el tipo ${typeInfo.type.name}`);
             }
             const typeData = await response.json();
-            const spanishName = typeData.names.find(name => name.language.name === 'es');
+            const spanishName = typeData.names.find(
+              (name) => name.language.name === "Es"
+            );
             return spanishName ? spanishName.name : typeInfo.type.name;
-        })
-    );
-    return spanishTypeNames.join(' | '); // Unir con un separador
-}
+          })
+        );
+        return spanishTypeNames.join(" | "); // Unir con un separador
+      }
 
+      // Función para cargar Pokémon por lote
+      async function buscarpokemon() {
+        const container = document.querySelector(".borde");
 
-// Función para cargar Pokémon por lote
-async function buscarpokemon() {
-    const container = document.querySelector('.borde');
-    const end = currentOffset + batchSize - 1; // Definir el final del lote actual
+        // El número total de Pokémon
+        const totalPokemon = 1025;
 
-    for (let i = currentOffset; i <= end; i++) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-        if (!response.ok) {
-            console.error(`Error al obtener Pokémon ${i}: ${response.statusText}`);
+        for (let i = 1; i <= totalPokemon; i++) {
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${i}`
+          );
+          if (!response.ok) {
+            console.error(
+              `Error al obtener Pokémon ${i}: ${response.statusText}`
+            );
             continue;
+          }
+          const pokemon = await response.json();
+
+          const pokemonCard = createPokemonCard(pokemon); // Crear la carta de Pokémon
+          container.innerHTML += pokemonCard; // Agregar la carta al contenedor
         }
-        const pokemon = await response.json();
+      }
 
-        const pokemonCard = createPokemonCard(pokemon); // Crear la carta de Pokémon
-        container.innerHTML += pokemonCard; // Agregar la carta al contenedor
-    }
+      buscarpokemon(); // Cargar todos los Pokémon al inicio
 
-    currentOffset = end + 1; // Actualizar el inicio para el siguiente lote
-}
+      // Traducción de habilidades y estadísticas al español
+      const statTranslations = {
+        hp: "HP",
+        attack: "Ataque",
+        defense: "Defensa",
+        "special-attack": "Ataque Especial",
+        "special-defense": "Defensa Especial",
+        speed: "Velocidad",
+      };
 
-// Llamar la función para cargar Pokémon al principio
-buscarpokemon();
+      // Traducir las estadísticas al español
+      function getStatsInSpanish(stats) {
+        return stats
+          .map((stat) => {
+            const statName = statTranslations[stat.stat.name] || stat.stat.name; // Traducir el nombre
+            return `${statName}: ${stat.base_stat}`; // Formato para mostrar las estadísticas
+          })
+          .join("<br>"); // Unir con salto de línea
+      }
 
-const cargarMasBtn = document.getElementById("btn-cargar-mas");
-cargarMasBtn.addEventListener("click", buscarpokemon); // Cargar más Pokémon al hacer clic en el botón
+      // Función para abrir el modal con información adicional
+      async function openModal(pokemonName) {
+        const modal = document.getElementById("modal-info");
+        const pokemonInfoDiv = document.getElementById("pokemon-info");
 
-// Traducción de habilidades y estadísticas al español
-const statTranslations = {
-    'hp': 'HP',
-    'attack': 'Ataque',
-    'defense': 'Defensa',
-    'special-attack': 'Ataque Especial',
-    'special-defense': 'Defensa Especial',
-    'speed': 'Velocidad'
-};
+        try {
+          // Obtener información del Pokémon
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+          );
+          if (!response.ok) {
+            console.error(`Error al obtener Pokémon: ${response.statusText}`);
+            modal.style.display = "none"; // Cerrar el modal si falla
+            return;
+          }
+          const pokemon = await response.json();
 
-// Traducir las estadísticas al español
-function getStatsInSpanish(stats) {
-    return stats.map(stat => {
-        const statName = statTranslations[stat.stat.name] || stat.stat.name; // Traducir el nombre
-        return `${statName}: ${stat.base_stat}`; // Formato para mostrar las estadísticas
-    }).join('<br>'); // Unir con salto de línea
-}
+          // Obtener información de la especie de Pokémon
+          const speciesResponse = await fetch(
+            `https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`
+          );
+          if (!speciesResponse.ok) {
+            console.error(
+              `Error al obtener la especie: ${speciesResponse.statusText}`
+            );
+            return;
+          }
 
+          const species = await speciesResponse.json();
+          const description =
+            species.flavor_text_entries.find(
+              (entry) => entry.language.name === "es"
+            )?.flavor_text || "Sin descripción"; // Valor por defecto
 
-// Función para abrir el modal con información adicional
-async function openModal(pokemonName) {
-    const modal = document.getElementById("modal-info");
-    const pokemonInfoDiv = document.getElementById("pokemon-info");
+          const spanishTypes = await getPokemonTypesInSpanish(pokemon.types); // Traducir los tipos
 
-    // Obtener información del Pokémon
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-    if (!response.ok) {
-        console.error(`Error al obtener Pokémon: ${response.statusText}`);
-        return;
-    }
-    const pokemon = await response.json();
+          const spanishAbilities = await Promise.all(
+            pokemon.abilities.map(async (ability) => {
+              const response = await fetch(
+                `https://pokeapi.co/api/v2/ability/${ability.ability.name}`
+              );
+              if (!response.ok) {
+                throw new Error(
+                  `Error al obtener la habilidad: ${response.statusText}`
+                );
+              }
+              const abilityData = await response.json();
+              return (
+                abilityData.names.find((name) => name.language.name === "es")
+                  ?.name || "Desconocida"
+              );
+            })
+          );
 
-    // Obtener información de la especie de Pokémon para obtener descripción
-    const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`);
-    if (!speciesResponse.ok) {
-        console.error(`Error al obtener la especie: ${speciesResponse.statusText}`);
-        return;
-    }
-    const species = await speciesResponse.json();
-    const description = species.flavor_text_entries.find(entry => entry.language.name === 'es')?.flavor_text || 'Sin descripción';
+          const statsInSpanish = getStatsInSpanish(pokemon.stats); // Traducir las estadísticas
 
-    const spanishTypes = await getPokemonTypesInSpanish(pokemon.types); // Traducir los tipos
-    const spanishAbilities = await Promise.all(
-        pokemon.abilities.map(async (ability) => {
-            const response = await fetch(`https://pokeapi.co/api/v2/ability/${ability.ability.name}`);
-            if (!response.ok) {
-                throw new Error(`Error al obtener la habilidad: ${response.statusText}`);
-            }
-            const abilityData = await response.json();
-            return abilityData.names.find(name => name.language.name === 'es').name; // Encontrar el nombre en español
-        })
-    );
-    const statsInSpanish = getStatsInSpanish(pokemon.stats); // Traducir las estadísticas
-
-    // Información para mostrar en el modal
-    pokemonInfoDiv.innerHTML = `
+          // Información para mostrar en el modal
+          pokemonInfoDiv.innerHTML = `
         <div>
             <h2>${pokemon.name}</h2> <!-- Título -->
-            <img src="${pokemon.sprites.other['official-artwork'].front_default}" alt="${pokemon.name}">
+            <img src="${
+              pokemon.sprites.other["official-artwork"].front_default
+            }" alt="${pokemon.name}">
             <p>Descripción: ${description}</p> <!-- Descripción en español -->
-            <p>Estadísticas:<br>${statsInSpanish}</p> <!-- Estadísticas -->
-            <p>Elemento: ${spanishTypes}</p> <!-- Tipos -->
-            <p>Habilidades:<br>${spanishAbilities.join('<br>')}</p> <!-- Habilidades -->
-        </div>
+
+            <div class="container">
+    <table class="Estadistia">
+        <tr>
+            <td><p>Estadísticas:<br>${statsInSpanish}</p></td> <!-- Estadísticas -->
+        </tr>
+    </table>
+
+    <table class="elemenEs">
+        <tr>
+            <td>Elementos: ${spanishTypes}<br>Habilidades: ${spanishAbilities.join(
+            "<br>"
+          )}</td>
+        </tr>
+    </table>
+</div>
     `;
 
-    modal.style.display = 'flex'; // Mostrar el modal
-}
+          modal.style.display = "flex"; // Mostrar el modal
 
-const closeModal = document.querySelector('.close');
-closeModal.addEventListener("click", () => {
-    document.getElementById("modal-info").style.display = "none";
-});
+          // Quitar la barra de desplazamiento del cuerpo
+          document.body.style.overflow = "hidden";
+        } catch (error) {
+          console.error(
+            `Error al abrir el modal para ${pokemonName}: ${error.message}`
+          );
+          modal.style.display = "none"; // Ocultar el modal si falla
+        }
+      }
 
-window.addEventListener("click", (event) => {
-    const modal = document.getElementById("modal-info");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-});
+      const closeModal = document.querySelector(".close");
+      closeModal.addEventListener("click", () => {
+        document.getElementById("modal-info").style.display = "none";
+        // Restaurar la barra de desplazamiento del cuerpo
+        document.body.style.overflow = "auto";
+      });
 
-            
-            
-            </script>
+      window.addEventListener("click", (event) => {
+        const modal = document.getElementById("modal-info");
+        if (event.target === modal) {
+          modal.style.display = "none";
+          // Restaurar la barra de desplazamiento del cuerpo
+          document.body.style.overflow = "auto";
+        }
+      });
 
-  
-    
+      // inicio de AGREGADO
+      // Mostrar el select cuando se hace clic en el botón "Filtrar"
+      document
+        .getElementById("btn-filtrar")
+        .addEventListener("click", function () {
+          document.getElementById("tipo-pokemon").style.display = "block";
+        });
+
+      // Función para filtrar Pokémon según el tipo seleccionado
+      document
+        .getElementById("tipo-pokemon")
+        .addEventListener("change", function () {
+          const tipoSeleccionado = this.value;
+          const cartasPokemon = document.querySelectorAll(".carta-pokemon");
+          cartasPokemon.forEach((carta) => {
+            if (
+              tipoSeleccionado === "todos" ||
+              carta.classList.contains(`type-${tipoSeleccionado}`)
+            ) {
+              carta.style.display = "block"; // Mostrar la carta si coincide con el tipo seleccionado o si se elige "Todos"
+            } else {
+              carta.style.display = "none"; // Ocultar la carta si no coincide con el tipo seleccionado
+            }
+          });
+        });
+
+      //fin del AGREGADO
+    </script>
 
     <style>
-        /* Estilos generales */
-        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300..700&display=swap');
+      /* Estilos generales */
+      @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300..700&display=swap");
 
-        div {
-            font-family: "Chakra Petch", sans-serif;
-            font-weight: 300;
-        }
+      div {
+        font-family: "Chakra Petch", sans-serif;
+        font-weight: 300;
+      }
 
-        @import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
-        p, h3 {
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 1100;
-        }
+      @import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap");
+      p,
+      h3 {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 1100;
+      }
 
-         /* Cambios en la fuente de todos los botones */
-         @import url('https://fonts.googleapis.com/css2?family=Abel&family=Jaldi:wght@400;700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
-        .btn-Regresar,
-        .btn-info,
-        .cargar-mas button { /* Afecta todos los botones */
-            font-family: 'Abel', sans-serif; /* Establece la tipografía */
-        }
+      /* Cambios en la fuente de todos los botones */
+      @import url("https://fonts.googleapis.com/css2?family=Abel&family=Jaldi:wght@400;700&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap");
+      .btn-Regresar,
+      .btn-info,
+      .cargar-mas button {
+        /* Afecta todos los botones */
+        font-family: "Abel", sans-serif; /* Establece la tipografía */
+      }
 
-        body {
-    font-family: Arial, sans-serif;
-    background-image: url('img/15185910_5568588.jpg');
-    background-repeat: no-repeat; /* No repetir la imagen */
-    background-size: cover; /* La imagen cubre todo el fondo */
-    background-position: center center; /* Centrar la imagen horizontal y verticalmente */
-    margin: 0;
-    padding: 0;
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("img/15185910_5568588.jpg");
+        background-repeat: no-repeat; /* No repetir la imagen */
+        background-size: cover; /* La imagen cubre todo el fondo */
+        background-position: center center; /* Centrar la imagen horizontal y verticalmente */
+        margin: 0;
+        padding: 0;
+      }
+
+      .btn-Regresar {
+        padding: 13px 35px;
+        border-radius: 25px;
+        background-color: #0c7e7e;
+        font-size: 15px;
+        color: #e0d2d2;
+        text-transform: capitalize;
+        box-shadow: rgba(104, 103, 103, 0.753);
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+
+        /* Ajuste del posicionamiento del botón */
+        position: absolute; /* Para posicionar dentro del contenedor */
+        top: 32px; /* Ajusta para colocarlo en la parte superior */
+        left: 200px; /* Ajusta para colocarlo a la izquierda */
+      }
+
+      .btn-buscar {
+        padding: 13px 35px;
+        border-radius: 25px;
+        background-color: #0c7e7e;
+        font-size: 15px;
+        color: #e0d2d2;
+        text-transform: capitalize;
+        box-shadow: rgba(104, 103, 103, 0.753);
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+
+        /* Ajuste del posicionamiento del botón */
+        position: absolute; /* Para posicionar dentro del contenedor */
+        top: 32px; /* Ajusta para colocarlo en la parte superior */
+        right: 200px; /* Ajusta para colocarlo a la derecha */
+      }
+
+      .centrar-imagen {
+        display: flex;
+        justify-content: center;
+        height: 20vh;
+      }
+
+      .borde {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .carta-pokemon {
+        position: relative; /* Necesario para el pseudo-elemento */
+        width: 230px;
+        height: 270px;
+        border-radius: 15px;
+        background-color: white; /* Fondo blanco para la carta */
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+        margin: 12px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        z-index: 1; /* Asegura que el contenido de la tarjeta esté por encima del fondo */
+      }
+
+      .carta-pokemon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("img/4918769.jpg"); /* Fondo con imagen */
+        background-size: cover; /* Ajusta para cubrir la carta */
+        background-repeat: no-repeat; /* No repetir la imagen */
+        opacity: 0.2; /* Bajo nivel de opacidad para suavizar el efecto */
+        border-radius: 15px; /* Mantiene bordes redondeados */
+        z-index: -1; /* Asegura que el fondo esté detrás del contenido de la tarjeta */
+      }
+
+      .carta-pokemon:hover {
+        transform: scale(1.05); /* Efecto de escala al hacer hover */
+        box-shadow: 0 0 10px rgb(54, 53, 53); /* Sombra más fuerte al hacer hover */
+      }
+
+      /* Estilos de hover para diferentes tipos de Pokémon */
+      .type-fire:hover {
+        background-color: #f08030; /* Cambia a naranja para tipo fuego */
+      }
+
+      .type-water:hover {
+        background-color: #6890f0; /* Cambia a azul para tipo agua */
+      }
+
+      .type-electric:hover {
+        background-color: #f8d030; /* Cambia a amarillo para tipo eléctrico */
+      }
+
+      /* Puedes agregar más estilos según los tipos */
+      .type-grass:hover {
+        background-color: #78c850; /* Cambia a verde para tipo planta */
+      }
+
+      .type-ice:hover {
+        background-color: #98d8d8; /* Cambia a cian para tipo hielo */
+      }
+
+      .type-fighting:hover {
+        background-color: #c03028; /* Cambia a rojo para tipo lucha */
+      }
+
+      /* Agrega los estilos de hover para cada tipo de Pokémon según lo necesites */
+
+      .carta-pokemon:hover {
+        transform: scale(1.05); /* Solo escala para evitar cambios bruscos */
+        box-shadow: 0 0 10px rgb(54, 53, 53);
+      }
+
+      .carta-pokemon img {
+        width: 160px; /* Tamaño fijo para evitar reajustes */
+        height: 160px;
+      }
+
+      .carta-pokemon h3 {
+        margin: 10px 0;
+        text-transform: capitalize;
+      }
+
+      .carta-pokemon div {
+        color: #777;
+      }
+
+      .btn-info {
+        padding: 5px 20px;
+        border-radius: 15px;
+        background-color: #4caf50;
+        font-size: 15px;
+        color: rgb(245, 232, 232);
+        text-transform: capitalize;
+        border: 2px solid black; /* Agrega un borde negro */
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .btn-info:hover {
+        background-color: #78b87b;
+      }
+
+      .modal {
+        display: none; /* El modal comienza oculto */
+        position: fixed; /* Para cubrir toda la pantalla */
+        top: 0;
+        left: 0;
+        width: 100%; /* Ancho completo */
+        height: 100%; /* Altura completa */
+        background-color: rgba(0,0,0,0.5
+        ); /* Fondo oscuro con transparencia */
+        justify-content: center; /* Centrar horizontalmente */
+        align-items: center; /* Centrar verticalmente */
+        backdrop-filter: blur(2px); /* Efecto de desenfoque */
+        transition: opacity 0.5s; /* Transición suave para el cambio de opacidad */
+        z-index: 1000; /* Asegura que el modal esté por encima de las cartas */
+      }
+
+      /* Estilos para el contenido del modal */
+      .modal-content {
+        background-image: url("img/15185910_5568588.jpg");
+        background-repeat: no-repeat; /* No repetir la imagen */
+        background-size: cover; /* La imagen cubre todo el fondo */
+        background-position: center center; /* Centrar la imagen horizontal y verticalmente */
+        background-color: rgba(255,255,255,0.7
+        ); /* Fondo blanco con transparencia */
+        padding: 10px; /* Espaciado interno */
+        border-radius: 10px; /* Bordes redondeados */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+        max-width: 500px; /* Ancho máximo reducido para el modal */
+        max-height: 580px; /* Altura máxima para el modal */
+        text-align: center; /* Centrado del texto */
+        position: relative; /* Para ubicar el botón de cierre */
+        overflow: auto; /* Agrega barras de desplazamiento si el contenido supera la altura máxima */
+      }
+
+      #pokemon-info img {
+        width: 230px; /* Ancho de la imagen */
+        height: 230px; /* Altura de la imagen */
+      }
+
+      .container {
+        display: flex;
+      }
+
+      table.Estadistia,
+      table.elemenEs {
+        width: 40%;
+        text-align: left;
+        border-collapse: collapse; /* Elimina los espacios entre las celdas */
+        margin: 0 auto;
+      }
+
+      table.Estadistia td,
+      table.elemenEs td {
+        border: 1px solid #ddd; /* Borde de las celdas de datos */
+        padding: 10px; /* Espacio alrededor del contenido de las celdas de datos */
+      }
+
+      table.Estadistia td p,
+      table.elemenEs td p {
+        margin: 0; /* Elimina el margen alrededor de los párrafos */
+      }
+      /* Estilos para el botón de cierre */
+      .close {
+        color: #a18b8b; /* Color de la "x" */
+        font-size: 28px; /* Tamaño de la "x" */
+        font-weight: bold; /* Negrita */
+        position: absolute; /* Posición para ubicar la "x" */
+        top: 10px; /* Distancia desde la parte superior */
+        right: 20px; /* Distancia desde el lado derecho */
+        cursor: pointer; /* Cambiar el cursor a mano */
+        transition: color 0.3s; /* Transición para el cambio de color */
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #797676; /* Cambia el color al pasar el cursor */
+      }
+
+      /* Estilos para el contenido del modal */
+      .pokemon-info {
+        font-size: 16px; /* Tamaño del texto */
+        line-height: 1.5; /* Altura de línea para mejorar la legibilidad */
+        padding: 10px; /* Espaciado interno para el contenido */
+        text-align: center; /* Centrar el texto */
+      }
+
+      /* Hacer que la imagen sea más pequeña */
+      .pokemon-info {
+        /* Añade flexbox para centrar los elementos */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Línea divisoria */
+      .pokemon-info .separator {
+        border-top: 1px solid #ccc; /* Línea divisoria */
+        margin: 10px 0; /* Espacio antes y después de la línea */
+      }
+
+      /* Sección de atributos (como estadísticas y habilidades) */
+      .pokemon-info .attributes {
+        text-align: left; /* Alinear a la izquierda */
+        padding-left: 10px; /* Espaciado desde el borde izquierdo */
+      }
+
+      /* RECIEN */
+      #tipo-pokemon {
+        display: none;
+      }
+
+      /* Estilo para el botón */
+
+
+#btn-filtrar {
+        padding: 7px 25px;
+        border-radius: 5px;
+        background-color: #a8b8a4;
+        font-size: 15px;
+        color: #000000;
+        text-transform: capitalize;
+        box-shadow: rgba(104, 103, 103, 0.753);
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+
+        /* Ajuste del posicionamiento del botón */
+        position: absolute; /* Para posicionar dentro del contenedor */
+        top: 40px; /* Ajusta para colocarlo en la parte superior */
+        left: 12px; /* Ajusta para colocarlo a la izquierda */
+      }
+
+#btn-filtrar:hover {
+    background-color: #ad9691; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilo para el select */
+#tipo-pokemon {
+    width: 86px;
+    height: 25px;
+    border: none;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 6px; /* Bordes redondeados */
+    background: #e4dfdf;
+    outline: none; /* Sin borde al seleccionar */
+    position: relative; /* Añade esto */
+    top: 70px; /* Ajusta para colocarlo en la parte superior */
+    left: 12px; /* Ajusta para colocarlo a la izquierda */
 }
 
 
-       
-        .btn-Regresar {
-            padding: 13px 35px;
-            border-radius: 25px;
-            background-color: #0c7e7e;
-            font-size: 15px;
-            color: #e0d2d2;
-            text-transform: capitalize;
-            box-shadow: rgba(104, 103, 103, 0.753);
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-
-            /* Ajuste del posicionamiento del botón */
-            position: absolute; /* Para posicionar dentro del contenedor */
-            top: 32px; /* Ajusta para colocarlo en la parte superior */
-            left: 200px; /* Ajusta para colocarlo a la izquierda */
-        }
-
-        .btn-buscar {
-            padding: 13px 35px;
-            border-radius: 25px;
-            background-color: #0c7e7e;
-            font-size: 15px;
-            color:#e0d2d2;
-            text-transform: capitalize;
-            box-shadow: rgba(104, 103, 103, 0.753);
-            text-decoration: none;
-            font-weight: bold;
-            border: none;
-
-            /* Ajuste del posicionamiento del botón */
-            position: absolute; /* Para posicionar dentro del contenedor */
-            top: 32px; /* Ajusta para colocarlo en la parte superior */
-            right: 200px; /* Ajusta para colocarlo a la derecha */
-        }
-
-
-        .centrar-imagen {
-            display: flex;
-            justify-content: center;
-            height: 20vh;
-        }
-
-        .borde {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
- 
-
-        .carta-pokemon {
-    position: relative; /* Necesario para el pseudo-elemento */
-    width: 230px;
-    height: 270px;
-    border-radius: 15px;
-    background-color: white; /* Fondo blanco para la carta */
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-    margin: 12px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    z-index: 1; /* Asegura que el contenido de la tarjeta esté por encima del fondo */
+#tipo-pokemon:focus {
+    box-shadow: 0 0 5px rgb(92, 188, 214); /* Sombra al seleccionar */
 }
-
-.carta-pokemon::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('img/4918769.jpg'); /* Fondo con imagen */
-    background-size: cover; /* Ajusta para cubrir la carta */
-    background-repeat: no-repeat; /* No repetir la imagen */
-    opacity: 0.2; /* Bajo nivel de opacidad para suavizar el efecto */
-    border-radius: 15px; /* Mantiene bordes redondeados */
-    z-index: -1; /* Asegura que el fondo esté detrás del contenido de la tarjeta */
-}
-
-
-.carta-pokemon:hover {
-    transform: scale(1.05); /* Efecto de escala al hacer hover */
-    box-shadow: 0 0 10px rgb(54, 53, 53); /* Sombra más fuerte al hacer hover */
-}
-
-
-/* Estilos de hover para diferentes tipos de Pokémon */
-.type-fire:hover {
-    background-color: #F08030; /* Cambia a naranja para tipo fuego */
-}
-
-.type-water:hover {
-    background-color: #6890F0; /* Cambia a azul para tipo agua */
-}
-
-.type-electric:hover {
-    background-color: #F8D030; /* Cambia a amarillo para tipo eléctrico */
-}
-
-/* Puedes agregar más estilos según los tipos */
-.type-grass:hover {
-    background-color: #78C850; /* Cambia a verde para tipo planta */
-}
-
-.type-ice:hover {
-    background-color: #98D8D8; /* Cambia a cian para tipo hielo */
-}
-
-.type-fighting:hover {
-    background-color: #C03028; /* Cambia a rojo para tipo lucha */
-}
-
-/* Agrega los estilos de hover para cada tipo de Pokémon según lo necesites */
-
-        .carta-pokemon:hover {
-            transform: scale(1.05); /* Solo escala para evitar cambios bruscos */
-            box-shadow: 0 0 10px rgb(54, 53, 53);
-}
-
-        .carta-pokemon img {
-            width: 160px;  /* Tamaño fijo para evitar reajustes */
-            height: 160px
-        }
-
-        .carta-pokemon h3 {
-            margin: 10px 0;
-            text-transform: capitalize;
-        }
-
-        .carta-pokemon div {
-            color: #777;
-        }
-
-        .btn-info {
-    padding: 5px 20px;
-    border-radius: 15px;
-    background-color: #4CAF50;
-    font-size: 15px;
-    color: rgb(245, 232, 232);
-    text-transform: capitalize;
-    border: 2px solid black; /* Agrega un borde negro */
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-        
-        .btn-info:hover {
-            background-color: #45a049;
-        }
-
-
-     
-        .modal {
-    display: none; /* El modal comienza oculto */
-    position: fixed; /* Para cubrir toda la pantalla */
-    top: 0;
-    left: 0;
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con transparencia */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    backdrop-filter: blur(2px); /* Efecto de desenfoque */
-    transition: opacity 0.5s; /* Transición suave para el cambio de opacidad */
-    z-index: 1000; /* Asegura que el modal esté por encima de las cartas */
-}
-
-/* Estilos para el contenido del modal */
-.modal-content {
-    background-image: url('img/15185910_5568588.jpg');
-    background-repeat: no-repeat; /* No repetir la imagen */
-    background-size: cover; /* La imagen cubre todo el fondo */
-    background-position: center center; /* Centrar la imagen horizontal y verticalmente */
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco con transparencia */
-    padding: 10px; /* Espaciado interno */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
-    max-width: 600px; /* Ancho máximo reducido para el modal */
-    max-height: 680px; /* Altura máxima para el modal */
-    text-align: center; /* Centrado del texto */
-    position: relative; /* Para ubicar el botón de cierre */
-    overflow: auto; /* Agrega barras de desplazamiento si el contenido supera la altura máxima */
-}
-
-.pokemon-info .pokemon-image {
-    max-width: 50px; /* Ajustar el ancho de la imagen */
-    max-height: 0px; /* Ajustar la altura de la imagen */
-    border-radius: 10px; /* Bordes redondeados */
-    margin-bottom: 10px; /* Espaciado debajo de la imagen */
-}
-
-
-/* Estilos para el botón de cierre */
-.close {
-    color: #aaa; /* Color de la "x" */
-    font-size: 28px; /* Tamaño de la "x" */
-    font-weight: bold; /* Negrita */
-    position: absolute; /* Posición para ubicar la "x" */
-    top: 10px; /* Distancia desde la parte superior */
-    right: 20px; /* Distancia desde el lado derecho */
-    cursor: pointer; /* Cambiar el cursor a mano */
-    transition: color 0.3s; /* Transición para el cambio de color */
-}
-
-.close:hover,
-.close:focus {
-    color: #333; /* Cambia el color al pasar el cursor */
-}
-
-/* Estilos para el contenido del modal */
-.pokemon-info {
-    font-size: 16px; /* Tamaño del texto */
-    line-height: 1.5; /* Altura de línea para mejorar la legibilidad */
-    padding: 10px; /* Espaciado interno para el contenido */
-    text-align: center; /* Centrar el texto */
-}
-
-/* Hacer que la imagen sea más pequeña */
-.pokemon-info {
-    /* Añade flexbox para centrar los elementos */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-/* Línea divisoria */
-.pokemon-info .separator {
-    border-top: 1px solid #ccc; /* Línea divisoria */
-    margin: 10px 0; /* Espacio antes y después de la línea */
-}
-
-/* Sección de atributos (como estadísticas y habilidades) */
-.pokemon-info .attributes {
-    text-align: left; /* Alinear a la izquierda */
-    padding-left: 10px; /* Espaciado desde el borde izquierdo */
-}
-
-
-
-
-/* Aparte del modal */
-
-            /* Estilos para el botón de cargar más */
-        .cargar-mas {
-            text-align: center; /* Centrar el botón */
-            padding: 20px; /* Espaciado para el botón */
-        }
-
-        .cargar-mas button {
-            padding: 12px 20px; /* Espaciado interno */
-            border-radius: 20px; /* Bordes redondeados */
-            background-color: #4947dd; /* Color de fondo */
-            font-size: 16px; /* Tamaño de fuente */
-            color: #fff; /* Color del texto */
-            border: none; /* Sin borde */
-            cursor: pointer; /* Cambiar el cursor a mano */
-            transition: background-color 0.3s; /* Transición para el cambio de color */
-        }
-
-        .cargar-mas button:hover {
-            background-color: #fd0303; /* Cambiar el color al pasar el cursor */
-        }
-        
+      /* FiN select*/
     </style>
-</body>
+  </body>
 </html>
