@@ -12,7 +12,7 @@
   </head>
   <body>
     <a href="index.html" class="btn-Regresar">Regresar</a>
-    <a href="index1.php" class="btn-buscar">Buscador</a>
+    <a href="index1.html" class="btn-buscar">Buscador</a>
     <!-- AGREGADO RECIEN -->
     <button id="btn-filtrar" class="btn-filtrar">Filtrar</button>
     <select id="tipo-pokemon" class="tipo-pokemon">
@@ -35,6 +35,7 @@
       <option value="dark">Siniestro</option>
       <option value="steel">Acero</option>
       <option value="fairy">Hada</option>
+      <option value="legendary">Legendario</option>
     </select>
     <!-- FIN -->
 
@@ -44,7 +45,7 @@
     </div>
     <div class="borde"></div>
 
-    <!-- Modal con fondo transparente y color celeste claro -->
+    <!-- Modal con fondo  -->
     <div id="modal-info" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -52,7 +53,6 @@
         <!-- Contenido del modal -->
       </div>
     </div>
-
 
     <!-- Modal para mostrar información del Pokémon -->
     <div id="modal-info" class="modal">
@@ -65,6 +65,11 @@
         <!-- Contenido dinámico del Pokémon -->
       </div>
     </div>
+    <!--Botón para ordenar-->
+<div class="contenedor-botones">
+  <button id="btn-ordenar-ascendente">Ordenar A-Z</button>
+  <button id="btn-ordenar-descendente">Ordenar Z-A</button>
+</div>
 
     <script>
       // Mapa de colores según el tipo de Pokémon
@@ -112,9 +117,7 @@
     `;
       }
 
-      // Variables para manejar la carga de Pokémon
-      let currentOffset = 1; // Punto de inicio para el siguiente lote
-      const batchSize = 20; // Cantidad de Pokémon a cargar por lote
+
 
       async function getPokemonTypesInSpanish(pokemonTypes) {
         const spanishTypeNames = await Promise.all(
@@ -318,6 +321,37 @@
         });
 
       //fin del AGREGADO
+
+      //Función para ordenar
+      document.getElementById("btn-ordenar-ascendente").addEventListener("click", function() {
+        ordenarCartasPokemon("ascendente");
+      });
+      
+      document.getElementById("btn-ordenar-descendente").addEventListener("click", function() {
+        ordenarCartasPokemon("descendente");
+      });
+      
+      function ordenarCartasPokemon(orden) {
+        const container = document.querySelector(".borde");
+        const cartasPokemon = Array.from(container.querySelectorAll(".carta-pokemon"));
+      
+        cartasPokemon.sort((a, b) => {
+          const nombreA = a.querySelector("h3").textContent.toLowerCase();
+          const nombreB = b.querySelector("h3").textContent.toLowerCase();
+          if (orden === "ascendente") {
+            return nombreA.localeCompare(nombreB);
+          } else {
+            return nombreB.localeCompare(nombreA);
+          }
+        });
+      
+        container.innerHTML = ""; // Limpiar el contenedor
+      
+        cartasPokemon.forEach(carta => {
+          container.appendChild(carta); // Agregar las cartas ordenadas al contenedor
+        });
+      }
+      
     </script>
 
     <style>
@@ -390,6 +424,31 @@
         top: 32px; /* Ajusta para colocarlo en la parte superior */
         right: 200px; /* Ajusta para colocarlo a la derecha */
       }
+
+      .contenedor-botones {
+        position: absolute;
+        top: 100px;
+        right: 150px;
+      }
+      
+      .contenedor-botones button {
+        padding: 7px 15px;
+        border-radius: 5px;
+        background-color: #a8b8a4;
+        font-size: 15px;
+        color: #000000;
+        text-transform: capitalize;
+        box-shadow: rgba(104, 103, 103, 0.753);
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+        margin-left: 5px;
+      }
+      
+      .contenedor-botones button:hover {
+        background-color: #ad9691;
+      }
+      
 
       .centrar-imagen {
         display: flex;
@@ -507,7 +566,11 @@
         left: 0;
         width: 100%; /* Ancho completo */
         height: 100%; /* Altura completa */
-        background-color: rgba(0,0,0,0.5
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
         ); /* Fondo oscuro con transparencia */
         justify-content: center; /* Centrar horizontalmente */
         align-items: center; /* Centrar verticalmente */
@@ -518,11 +581,15 @@
 
       /* Estilos para el contenido del modal */
       .modal-content {
-        background-image: url("img/15185910_5568588.jpg");
+        background-image: url("img/fondo.png");
         background-repeat: no-repeat; /* No repetir la imagen */
         background-size: cover; /* La imagen cubre todo el fondo */
         background-position: center center; /* Centrar la imagen horizontal y verticalmente */
-        background-color: rgba(255,255,255,0.7
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.7
         ); /* Fondo blanco con transparencia */
         padding: 10px; /* Espaciado interno */
         border-radius: 10px; /* Bordes redondeados */
@@ -656,7 +723,9 @@
 #tipo-pokemon:focus {
     box-shadow: 0 0 5px rgb(92, 188, 214); /* Sombra al seleccionar */
 }
-      /* FiN select*/
+
+
+      /* fiN */
     </style>
   </body>
 </html>
