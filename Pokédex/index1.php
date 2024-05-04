@@ -15,8 +15,9 @@
 <body>
     <!-- Selector para elegir un Pokémon y el botón Buscar en la parte superior -->
     <div class="contenedor">
+    <a href="catalogoPokemon.html" class="regresar">REGRESAR</a>
         <img class="ashimg" src="img/ash.png" alt="">
-        <a href="catalogoPokemon.html" class="regresar">REGRESAR</a>
+        
         <button class="buscador-btn1"><i class="fa-solid fa-magnifying-glass"></i></button>
         <div class="desplazar-pokemon">
             <select id="pokemon-selector">  
@@ -43,6 +44,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
     <script src="JS/functions.js"></script>
