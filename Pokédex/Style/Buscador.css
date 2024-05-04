@@ -1,0 +1,443 @@
+/* Estilos generales */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 100%;
+}
+
+.contenedor {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    background-image: linear-gradient(to bottom, #000000, #37141c, #6a1c2b, #a02433, #d63232);
+}
+.ashimg{
+    height: 50vh;
+}
+.regresar{
+    display: flex;
+    gap: 40px;
+    margin-bottom: 580px;
+    margin-right: 20px;
+    text-decoration: none;
+    background-image: linear-gradient(to bottom, #1f1c1c, #4b2526, #792b2d, #a72f31, #d63232);
+    border-radius: 20px;
+    padding: 7px;
+    color: #b39a9a;
+}
+.regresar:hover{
+    color: #000000;
+}
+.pokedex {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cartao-pokemon {
+    box-shadow: rgba(201, 201, 208, 0.864) 0px 4px 10px;
+    border-radius: 40px;
+    display: none;
+    margin-right: 450px;
+}
+
+.cartao-pokemon.aberto {
+    display: block;
+}
+
+.cartao-pokemon.cartao-topo {
+    padding: 20px 30px 0;
+    height: 100vh;
+}
+
+.cartao-imagem {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 410px;
+    max-height: 390px;
+    background-image: linear-gradient(to bottom, #f7d815, #f0d52f, #ead240, #e3ce4d, #ddcb59);
+    padding: 10px 50px 350px 50px;
+}
+
+.cartao-informacoes {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightblue;
+    padding: 30px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.estado,
+.habilidades {
+    width: 180px;
+}
+
+h3 {
+    font-size: 18px;
+    border-bottom: 1px solid #6B727A;
+    padding-bottom: 10px;
+}
+
+.desplazar-pokemon {
+    text-align: center;
+    width: 170px;
+    margin-bottom: 90vh;
+}
+
+#pokemon-selector {
+    padding: 9px 20px;
+    border-radius: 0 20px 20px 0;
+    background-image: linear-gradient(to bottom, #1f1c1c, #4b2526, #792b2d, #a72f31, #d63232);
+    width: 160px;
+    color: #bba7a7;
+    
+}
+#pokemon-selector option[value="bulbasaur"] {
+    color: rgb(0, 0, 0); 
+    background-color:greenyellow;
+}
+
+#pokemon-selector option[value="ivysaur"] {
+    color: rgb(0, 0, 0); 
+    background-color:greenyellow;
+}
+
+#pokemon-selector option[value="venusaur"] {
+    color: rgb(0, 0, 0); 
+    background-color:greenyellow;
+}
+#pokemon-selector option[value="charmander"] {
+    color: rgb(0, 0, 0); 
+    background-color:orangered;
+}
+#pokemon-selector option[value="charmeleon"] {
+    color: rgb(0, 0, 0); 
+    background-color:orangered;
+}
+#pokemon-selector option[value="charizard"] {
+    color: rgb(0, 0, 0); 
+    background-color:orangered;
+}
+#pokemon-selector option[value="squirtle"] {
+    color: rgb(0, 0, 0); 
+    background-color: lightblue;
+}
+#pokemon-selector option[value="wartortle"] {
+    color: rgb(0, 0, 0); 
+    background-color:lightblue;
+}
+#pokemon-selector option[value="blastoise"] {
+    color: rgb(0, 0, 0); 
+    background-color:lightblue;
+}
+#pokemon-selector option[value="caterpie"] {
+    color:yellow; 
+    background-color: rgb(55, 42, 18);
+}
+#pokemon-selector option[value="metapod"] {
+    color: yellow; 
+    background-color:rgb(55, 42, 18);
+}
+#pokemon-selector option[value="butterfree"] {
+    color: yellow;
+    background-color:rgb(55, 42, 18);
+}
+#pokemon-selector option[value="weedle"] {
+    color: yellow; 
+    background-color:rgb(55, 42, 18);
+}
+#pokemon-selector option[value="kakuna"] {
+    color: yellow; 
+    background-color:rgb(55, 42, 18);
+}
+#pokemon-selector option[value="beedrill"] {
+    color: yellow; 
+    background-color:rgb(55, 42, 18);
+}
+#pokemon-selector option[value="pidgey"] {
+    color: rgb(0, 0, 0); 
+    background-color:lightblue;
+}
+#pokemon-selector option[value="pidgeotto"] {
+    color: rgb(0, 0, 0); 
+    background-color:lightblue;
+}
+#pokemon-selector option[value="pidgeot"] {
+    color: rgb(0, 0, 0); 
+    background-color:lightblue;
+}
+#pokemon-selector option[value="rattata"] {
+    color: beige; 
+    background-color:rgb(79, 78, 78);
+}
+#pokemon-selector option[value="raticate"] {
+    color: beige; 
+    background-color:rgb(79, 78, 78);
+}
+#pokemon-selector option[value="spearow"] {
+    color: rgb(0, 0, 0); 
+    background-color:lightblue;
+}
+#pokemon-selector option[value="fearow"] {
+    color: rgb(0, 0, 0); 
+    background-color:lightblue;
+}
+#pokemon-selector option[value="ekans"] {
+    color: rgb(0, 0, 0); 
+    background-color:violet;
+}
+#pokemon-selector option[value="arbok"] {
+    color: rgb(0, 0, 0); 
+    background-color:violet;
+}
+#pokemon-selector option[value="pikachu"] {
+    color: rgb(0, 0, 0); 
+    background-color:gold;
+}
+#pokemon-selector option[value="raichu"] {
+    color: rgb(0, 0, 0); 
+    background-color:gold;
+}
+#pokemon-selector option[value="sandshrew"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="sandslash"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+
+#pokemon-selector option[value="nidoran-f"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="nidorina"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="nidoqueen"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="nidoran-m"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="nidorino"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="nidoking"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="clefairy"] {
+    color: rgb(0, 0, 0); 
+    background-color:pink;
+}
+#pokemon-selector option[value="clefable"] {
+    color: rgb(0, 0, 0); 
+    background-color:pink;
+}
+#pokemon-selector option[value="vulpix"] {
+    color: rgb(0, 0, 0); 
+    background-color:pink;
+}
+#pokemon-selector option[value="ninetales"] {
+    color: rgb(0, 0, 0); 
+    background-color:pink;
+}
+#pokemon-selector option[value="jigglypuff"] {
+    color: rgb(0, 0, 0); 
+    background-color:pink;
+}
+#pokemon-selector option[value="wigglytuff"] {
+    color: rgb(0, 0, 0); 
+    background-color:pink;
+}
+#pokemon-selector option[value="zubat"] {
+    color: rgb(173, 134, 224); 
+    background-color:purple;
+}
+#pokemon-selector option[value="golbat"] {
+    color: rgb(173, 134, 224); 
+    background-color:purple;
+}
+#pokemon-selector option[value="oddish"] {
+    color: rgb(173, 134, 224); 
+    background-color:purple;
+}
+#pokemon-selector option[value="gloom"] {
+    color: rgb(173, 134, 224); 
+    background-color:purple;
+}
+#pokemon-selector option[value="vileplume"] {
+    color: rgb(173, 134, 224); 
+    background-color:purple;
+}
+#pokemon-selector option[value="paras"] {
+    color: rgb(243, 151, 81); 
+    background-color:rgb(96, 54, 21);
+}
+#pokemon-selector option[value="parasect"] {
+    color: rgb(243, 151, 81); 
+    background-color:rgb(96, 54, 21);
+}
+#pokemon-selector option[value="venonat"] {
+    color:yellow; 
+    background-color: rgb(55, 42, 18);
+}
+#pokemon-selector option[value="venomoth"] {
+    color:yellow; 
+    background-color: rgb(55, 42, 18);
+}
+#pokemon-selector option[value="diglett"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="dugtrio"] {
+    color: rgb(0, 0, 0); 
+    background-color:goldenrod;
+}
+#pokemon-selector option[value="meowth"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="persian"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="psyduck"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="golduck"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="mankey"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="primeape"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="growlithe"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="arcanine"] {
+    color: rgb(0, 0, 0); 
+    background-color:rgb(247, 247, 138);
+}
+#pokemon-selector option[value="poliwag"] {
+    color: rgb(0, 0, 0); 
+    background-color:red;
+}
+#pokemon-selector option[value="poliwhirl"] {
+    color: rgb(0, 0, 0); 
+    background-color:red;
+}
+#pokemon-selector option[value="poliwrath"] {
+    color: rgb(0, 0, 0); 
+    background-color:red;
+}
+#pokemon-selector option[value="abra"] {
+    color: rgb(0, 0, 0); 
+    background-color: lightgray;
+}
+#pokemon-selector option[value="kadabra"] {
+    color: rgb(0, 0, 0); 
+    background-color: lightgray;
+}
+#pokemon-selector option[value="alakazam"] {
+    color: rgb(0, 0, 0); 
+    background-color: lightgray;
+}
+#pokemon-selector option[value="machop"] {
+    color: rgb(0, 0, 0); 
+    background-color: red;
+}
+#pokemon-selector option[value="machoke"] {
+    color: rgb(0, 0, 0); 
+    background-color: red;
+}
+#pokemon-selector option[value="machamp"] {
+    color: rgb(0, 0, 0); 
+    background-color: red;
+}
+#pokemon-selector option {
+    color: rgb(255, 230, 230); 
+    background-color:rgb(5, 5, 4);
+}
+#pokemon-selector option:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+
+
+#pokemon-selector:hover {
+    color: #000000;
+    cursor: pointer;
+}
+
+#pokemon-image {
+    width: 300px; 
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9)); 
+    margin-left: 10px;
+}
+
+
+/* Estilos para las evoluciones */
+#evolutions-container {
+    margin-top: 30px;
+}
+
+#evolutions-container h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.evolution {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.evolution img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.evolution p {
+    font-size: 16px;
+    font-weight: bold;
+}
+.buscador-btn1{
+    background-image: linear-gradient(to bottom, #1f1c1c, #4b2526, #792b2d, #a72f31, #d63232);
+    padding: 11px 11px;
+    border-radius: 40px;
+    color: #a28e8e;
+    cursor: pointer;
+    margin-bottom: 90vh;
+}
+.buscador-btn1:hover{
+    color: #000000;
+}
