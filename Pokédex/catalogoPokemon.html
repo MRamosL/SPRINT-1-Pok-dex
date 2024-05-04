@@ -362,45 +362,50 @@
           container.appendChild(carta); // Agregar las cartas ordenadas al contenedor
         });
       }
-      //shaidle
-      // Función para buscar Pokémon por nombre
-      const inputBuscar = document.getElementById("input-buscar");
-      const btnBuscar = document.getElementById("btn-buscar");
+ // Función para buscar Pokémon por nombre
+const inputBuscar = document.getElementById("input-buscar");
+const btnBuscar = document.getElementById("btn-buscar");
 
-      function buscarPokemon() {
-        const valorInput = inputBuscar.value.toLowerCase().trim();
-        const cartasPokemon = document.querySelectorAll(".carta-pokemon");
+function buscarPokemon() {
+  const valorInput = inputBuscar.value.toLowerCase().trim();
+  const cartasPokemon = document.querySelectorAll(".carta-pokemon");
 
-        let encontrado = false; // Bandera para comprobar si se encontró al menos un Pokémon
+  let encontrado = false; // Bandera para comprobar si se encontró al menos un Pokémon
 
-        // Ocultar todas las cartas antes de buscar
-        cartasPokemon.forEach((carta) => {
-          carta.style.display = "none"; // Oculta todas las cartas por defecto
-        });
+  // Ocultar todas las cartas antes de buscar
+  cartasPokemon.forEach((carta) => {
+    carta.style.display = "none"; // Oculta todas las cartas por defecto
+  });
 
-        // Mostrar solo las cartas que coincidan con el valor ingresado
-        cartasPokemon.forEach((carta) => {
-          const nombrePokemon = carta
-            .querySelector("h3")
-            .textContent.toLowerCase();
-          if (nombrePokemon.includes(valorInput)) {
-            // Solo muestra las cartas que coinciden
-            carta.style.display = "inline-block"; // Muestra solo la carta que coincide
-            encontrado = true; // Se encontró al menos un Pokémon
-          }
-        });
+  // Mostrar solo las cartas que coincidan con el valor ingresado
+  cartasPokemon.forEach((carta) => {
+    const nombrePokemon = carta
+      .querySelector("h3")
+      .textContent.toLowerCase();
+    if (nombrePokemon.includes(valorInput)) {
+      // Solo muestra las cartas que coinciden
+      carta.style.display = "inline-block"; // Muestra solo la carta que coincide
+      encontrado = true; // Se encontró al menos un Pokémon
+    }
+  });
 
-        // Si no se encontró ningún Pokémon, muestra una alerta
-        if (!encontrado) {
-          alert("El Pokémon que buscas no existe.");
-        }
-      }
+  // Si no se encontró ningún Pokémon, muestra una alerta
+  if (!encontrado) {
+    alert("El Pokémon que buscas no existe.");
+  }
+}
 
-      // Asignar el evento de clic al botón de búsqueda
-      btnBuscar.addEventListener("click", buscarPokemon);
-      //
+// Asignar el evento de clic al botón de búsqueda
+btnBuscar.addEventListener("click", buscarPokemon);
 
-      const linkBuscador = document.getElementById("link-buscador");
+// Agregar evento de teclado para activar la búsqueda al presionar Enter
+inputBuscar.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    buscarPokemon();
+  }
+});
+
+const linkBuscador = document.getElementById("link-buscador");
 
 
     </script>
