@@ -1,136 +1,31 @@
 <!DOCTYPE html>
-<html lang="en - US">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
-    <link rel="icon" href="resources/icono.png" />
-  </head>
-
-  <body>
-    <div class="pokedex_I">
-      <span>P</span>
-
-      <span>O</span>
-
-      <span>K</span>
-
-      <span>É</span>
-
-      <span>D</span>
-
-      <span>E</span>
-
-      <span>X</span>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body onclick="PlayAudio()">
+    <header class="header">
+        <img src="resources/logoPokemon.png" alt="Logo" class="logo-poke">
+    </header>
+    <div class="container">
+        <div class="image-container">
+            <div class="pokedex-images">
+                <a href="catalogoPokemon.html"><img src="resources/Pokedex-leftside.png" alt="Lado izquierdo de la Pokédex" class="left-image"></a>
+                <a href="catalogoPokemon.html"><img src="resources/Pokedex-ball-trans.png" alt="Poké Ball" class="poke-ball"></a>
+                <a href="catalogoPokemon.html"><img src="resources/Pokedex-rightside.png" alt="Lado derecho de la Pokédex" class="right-image"></a>
+            </div>
+        </div>
     </div>
-
-    <a href="catalogoPokemon.html" class="Continuar">Continuar</a>
-
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,900&display=swap");
-
-      body {
-        font-family: "Poppins", sans-serif;
-
-        margin: 0;
-
-        padding: 0;
-
-        background: url(resources/Pikachu.gif);
-
-        background-size: center;
-      }
-
-      .pokedex_I {
-        position: absolute;
-        top: 25%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .pokedex_I span {
-        position: relative;
-        color: #0f107a;
-        font-family: sans-serif;
-        font-weight: bold;
-        letter-spacing: 10px;
-        text-transform: uppercase;
-        font-size: 70px;
-        animation: animate 4s linear infinite;
-      }
-
-      .pokedex_I span:nth-child(1) {
-        animation-delay: 0s;
-      }
-
-      .pokedex_I span:nth-child(2) {
-        animation-delay: 0.25s;
-      }
-
-      .pokedex_I span:nth-child(3) {
-        animation-delay: 0.5s;
-      }
-
-      .pokedex_I span:nth-child(4) {
-        animation-delay: 0.75s;
-      }
-
-      .pokedex_I span:nth-child(5) {
-        animation-delay: 1s;
-      }
-
-      .pokedex_I span:nth-child(6) {
-        animation-delay: 1.25s;
-      }
-
-      .pokedex_I span:nth-child(7) {
-        animation-delay: 1.5s;
-      }
-
-      @keyframes animate {
-        0% {
-          filter: blur(0);
-        }
-
-        40% {
-          filter: blur(20px);
-        }
-
-        88% {
-          filter: blur(20px);
-        }
-
-        100% {
-          filter: blur(20px);
-        }
-      }
-
-      .Continuar {
-        position: absolute;
-        top: 65%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: inline-block;
-        padding: 13px 45px;
-        border-radius: 25px;
-        background-color: #da9898;
-        font-size: 16px;
-        color: #110c0c;
-        text-transform: capitalize;
-        box-shadow: 40px rgba(255, 255, 255, 0.2);
-        text-decoration: none;
-        font-weight: bold;
-      }
-    </style>
-
-    <audio autoplay="" loop="" controls="">
-      <source src="resources/audi.mp3" type="audio/mp3" />
-    </audio>
-
-    <style>
-      #audio1 {
-        opacity: 0.0;
-      }
-    </style>
-  </body>
+    <audio id="musiquita" loop>
+    <source src="resources/audi.mp3" type="audio/mpeg">
+</audio>
+<script>
+    function PlayAudio(){
+        document.getElementById("musiquita").play();
+    }
+</script>
+</body>
 </html>

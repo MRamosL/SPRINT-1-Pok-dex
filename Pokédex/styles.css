@@ -1,0 +1,46 @@
+.pokedex-images {
+    display: flex;
+    justify-content: center; 
+    margin: 80px auto 0; 
+    max-width: 800px; 
+}
+
+
+.pokedex-images .left-image {
+    max-width: 40%; 
+    height: auto;
+    margin-right: -30px;
+    transform: translateX(250px); 
+}
+
+
+.pokedex-images .right-image {
+    max-width: 40%;
+    height: auto;
+    margin-left: -30px; 
+    transform: translateX(-85px);
+}
+
+.pokedex-images .poke-ball {
+    max-width: 40%; 
+    align-self: center; 
+    transform: translateY(65px) translateX(55px);
+}
+
+
+body {
+    background-image: url('resources/descarga.gif');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+}
+
+.header {
+    text-align: center; 
+    padding: -7px; 
+}
+
+.logo-poke {
+    max-width: 400px;
+    height: auto;
+}
