@@ -8,24 +8,30 @@
 body {
     font-family: 'Poppins', sans-serif;
     font-size: 100%;
+    background-image:linear-gradient(to bottom, #000000, #37141c, #6a1c2b, #a02433, #d63232);
+    padding:95px;
 }
 
 .contenedor {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 70vh;
-    background-image: linear-gradient(to bottom, #000000, #37141c, #6a1c2b, #a02433, #d63232);
+    background: rgba(161, 156, 156, 0.411) ; 
+    width: 80%;
+    margin-left:200px;
+    border-radius: 40px;
 }
+
 .ashimg{
     height: 50vh;
 }
 .regresar{
     display: flex;
     gap: 40px;
-    margin-bottom: 580px;
-    margin-right: 20px;
+    margin-bottom: 860px;
+    margin-right: 5px;
     text-decoration: none;
     background-image: linear-gradient(to bottom, #1f1c1c, #4b2526, #792b2d, #a72f31, #d63232);
     border-radius: 20px;
@@ -64,7 +70,7 @@ body {
     max-width: 410px;
     max-height: 390px;
     background-image: linear-gradient(to bottom, #f7d815, #f0d52f, #ead240, #e3ce4d, #ddcb59);
-    padding: 10px 50px 350px 50px;
+    padding: 10px 50px 450px 50px;
 }
 
 .cartao-informacoes {
@@ -90,7 +96,7 @@ h3 {
 .desplazar-pokemon {
     text-align: center;
     width: 170px;
-    margin-bottom: 90vh;
+    margin-bottom: 70vh;
 }
 
 #pokemon-selector {
@@ -436,7 +442,7 @@ h3 {
     border-radius: 40px;
     color: #a28e8e;
     cursor: pointer;
-    margin-bottom: 90vh;
+    margin-bottom: 70vh;
 }
 .buscador-btn1:hover{
     color: #000000;
